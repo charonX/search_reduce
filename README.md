@@ -1,1 +1,2 @@
-# search_block
+templete:
+https://github.com/lxieyang/chrome-extension-boilerplate-react
