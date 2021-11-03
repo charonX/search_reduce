@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "version":"0.0.1",
+  "name": "SearchBlock",
+  "options_page": "options/index.html",
+  "background": { "service_worker": "background/main.js" },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  },
+  "icons": {
+    "128": "./static/icon.png"
+  },
+  "devtools_page": "devtools.html",
+  "permissions": [
+    "webRequest",
+    "background",
+    "http://*/",
+    "https://*/"
+  ]
+}
