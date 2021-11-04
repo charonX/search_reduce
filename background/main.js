@@ -1,8 +1,12 @@
-chrome.webRequest.onCompleted.addListener(
-    (detail)=>{
-        console.log(detail)
-        return true
-    },
-    {urls: ["<all_urls>"]},
-    []
-)
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.contentScriptQuery == 'fetch') {
+        fetch(request.url)
+        .then(response => response.text())
+        .then(text => sendResponse(text))
+        .catch(error => {
+            console.log(error)
+        })
+        return true;
+      }
+});
