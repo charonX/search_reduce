@@ -1,3 +1,4 @@
+// 把 Object 转换为 Query text
 export function objToQuery(data){
     let str = [];
     for (var p in data)
@@ -7,11 +8,11 @@ export function objToQuery(data){
     return str.join("&");
 }
 
-
-export function getContent(doc, querySelectRule){
+// 根据选择器规则，从 Dom 中查找出 html 块
+export function getContent(dom, querySelectRule){
     let result = []
-    let parser = new DOMParser();
-    let dom = parser.parseFromString(doc, "text/html");
+    // let parser = new DOMParser();
+    // let dom = parser.parseFromString(doc, "text/html");
 
     let list = dom.querySelectorAll(querySelectRule['result'])
     for (let i = 0; i < list.length; i++) {
@@ -26,3 +27,16 @@ export function getContent(doc, querySelectRule){
     return result
 }
 
+
+// 获取 dom 内 type 为 hidden 的 input 的 name 和 value 组成的 Object
+export function getHiddenParams(dom){
+    let result = {}
+    // let parser = new DOMParser();
+    // let dom = parser.parseFromString(text, "text/html");
+    let inputs = dom.querySelectorAll('input[type=hidden]')
+    for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+        result[input.name] = input.value
+    }
+    return result
+}
