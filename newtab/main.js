@@ -1,70 +1,69 @@
-import { setBaiduUrl, getBaiduParams} from '../engine/baidu.js'
-import { getContent } from '../utils/utils.js'
-import { BadiduSelect } from '../options/config.js'
-import Baidu from '../engine/baidu.js'
+import Universal from '../engine/universal.js'
+import { Config } from '../engine/config.js'
 
+const DEFAULT = ['google', 'baidu']
+let engineInterface = {}
+let searchResult = {}
 
 function init(){
-    let engines = {
-        'baidu' : new Baidu()
-    }
+    initEngines(DEFAULT)
 
     let searchBtn = document.getElementById('serach')
     let inputValue= document.getElementById('searchValue')
 
-
     searchBtn.addEventListener('click',()=>{
         if(!inputValue.value) return
-        batchFetchSearch(batchConfig)
+        batchFetchSearch(inputValue.value, 1)
     })
+}
+
+function initEngines(engines){
+    for (let i = 0; i < engines.length; i++) {
+        const engineName = engines[i];
+        engineInterface[engineName] = new Universal(Config[engineName])
+    }
 }
 
 
 // 渲染结果到页面
-function renderResult(result){
+function renderResult(){
     let wrap= document.getElementById('result')
     let a = ''
-    for (let i = 0; i < result.length; i++) {
-        const item = result[i];
-        let c = `<div>
-            <div>${item.title}</div>
-            <div>${item.content}</div>
-        </div>`
+    for (const key in searchResult) {
+        if (Object.hasOwnProperty.call(searchResult, key)) {
+            const result = searchResult[key];
+            for (let i = 0; i < result.length; i++) {
+                const item = result[i];
+                let c = `<div>
+                    <div>${item.title}</div>
+                    <div>${item.content}</div>
+                </div>`
 
-        a+=c
+                a+=c
+            }
+        }
     }
     wrap.innerHTML = a
 }
 
-function getContentWithRule(rule){
-    let rule = rule
-    return (dom) => {
-        return getContent(dom, rule)
+function batchFetchSearch(keyword, page){
+    let keys = Object.keys(engineInterface)
+    let promise_all = []
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        let engine = engineInterface[key]
+        promise_all.push(engine.getSearchResult(keyword, page))
     }
-}
-
-// 处理搜索的返回结果
-function getAllResult(res){
-    let parser = new DOMParser();
-    let dom = parser.parseFromString(res, "text/html");
-
-    getBaiduParams(dom)
-    renderResult(getContent(dom,BadiduSelect))
-}
-
-function batchFetchSearch(config){
-    return []
-    chrome.runtime.sendMessage(
-        {
-            contentScriptQuery: 'fetch',
-            url,
-        },
-        (res)=>{
-            getAllResult(res)
+    Promise.all(promise_all).then((ress)=>{
+        for (let i = 0; i < DEFAULT.length; i++) {
+            const key = DEFAULT[i];
+            searchResult[key] = ress[i]
         }
-    );
+        renderResult()
+    }).catch((e)=>{
+        console.log(e)
+    })
 }
-
 
 
 init()

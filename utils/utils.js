@@ -9,7 +9,7 @@ export function objToQuery(data){
 }
 
 // 根据选择器规则，从 Dom 中查找出 html 块
-export function getContent(dom, querySelectRule){
+export function getContentWithRule(dom, querySelectRule){
     let result = []
     // let parser = new DOMParser();
     // let dom = parser.parseFromString(doc, "text/html");
@@ -17,11 +17,14 @@ export function getContent(dom, querySelectRule){
     let list = dom.querySelectorAll(querySelectRule['result'])
     for (let i = 0; i < list.length; i++) {
         const one = list[i];
-        let title = one.querySelector(querySelectRule['title']).outerHTML
-        let content = one.querySelector(querySelectRule['content']).outerHTML
+        let title = one.querySelector(querySelectRule['title'])
+        let content = one.querySelector(querySelectRule['content'])
+        
+        if(!title || !content) continue
+
         result.push({
-            title,
-            content,
+            title:title.outerHTML,
+            content:content.outerHTML,
         })
     }
     return result

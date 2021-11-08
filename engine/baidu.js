@@ -10,7 +10,7 @@ export default class Baidu{
             link:'h3 > a'
         }
         this.params = {
-            rn :20, // pageSize
+            rn :20,
             tn:"baiduhome_pg",
             ie:'utf-8',
             rsv_idx:2,

@@ -13,7 +13,7 @@
   "devtools_page": "devtools.html",
   "permissions": [
     "webRequest",
-    "background"
+    "storage"
   ],
   "host_permissions": [
     "http://*/*",
