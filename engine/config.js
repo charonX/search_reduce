@@ -30,9 +30,25 @@ export const Config = {
             ie:'UTF-8'
         },
         'rule':{
-            result:'.g',
+            result:'.g :not(.g)',
             title:'h3',
             content:'.VwiC3b.yXK7lf.MUxGbd.yDYNvb.lyLwlc.lEBKkf',
+            link:'a'
+        }
+    },
+    'bing':{
+        'name':'bing',
+        'baseUrl':'https://www.bing.com/search?',
+        'keyword':'q',
+        'laseSearch':'pq',
+        'page':'first',
+        'params':{
+            num :20,
+        },
+        'rule':{
+            result:'.b_algo',
+            title:'.b_title h2',
+            content:'.b_caption p',
             link:'a'
         }
     }

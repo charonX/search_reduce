@@ -1,7 +1,7 @@
 import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
 
-const DEFAULT = ['google', 'baidu']
+const DEFAULT = ['google', 'bing', 'baidu']
 let engineInterface = {}
 let searchResult = {}
 
