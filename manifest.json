@@ -13,7 +13,8 @@
   "devtools_page": "devtools.html",
   "permissions": [
     "webRequest",
-    "storage"
+    "storage",
+    "topSites"
   ],
   "host_permissions": [
     "http://*/*",
