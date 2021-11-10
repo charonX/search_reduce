@@ -66,6 +66,7 @@ function batchFetchSearch(keyword, page){
     })
 }
 
+// 获取 访问最高的页面
 function getTopSites(){
     chrome.topSites.get((urls)=>{
         console.log(urls)
