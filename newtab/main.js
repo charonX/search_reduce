@@ -6,6 +6,7 @@ let engineInterface = {}
 let searchResult = {}
 
 function init(){
+    getTopSites()
     initEngines(DEFAULT)
 
     let searchBtn = document.getElementById('serach')
@@ -65,5 +66,10 @@ function batchFetchSearch(keyword, page){
     })
 }
 
+function getTopSites(){
+    chrome.topSites.get((urls)=>{
+        console.log(urls)
+    })
+}
 
 init()
