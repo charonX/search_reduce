@@ -9,7 +9,7 @@ function init(){
     initEngines(DEFAULT)
 
     let searchBtn = document.getElementById('serach')
-    let inputValue= document.getElementById('searchValue')
+    let inputValue= document.getElementById('searchInput')
 
     searchBtn.addEventListener('click',()=>{
         if(!inputValue.value) return

@@ -25,12 +25,13 @@ export const Config = {
         'keyword':'q',
         'laseSearch':'aq',
         'page':'start',
+        'space':'+',
         'params':{
             num :20,
             ie:'UTF-8'
         },
         'rule':{
-            result:'.g :not(.g)',
+            result:'.g .tF2Cxc',
             title:'h3',
             content:'.VwiC3b.yXK7lf.MUxGbd.yDYNvb.lyLwlc.lEBKkf',
             link:'a'
@@ -42,6 +43,7 @@ export const Config = {
         'keyword':'q',
         'laseSearch':'pq',
         'page':'first',
+        'space':'+',
         'params':{
             num :20,
         },
