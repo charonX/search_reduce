@@ -1,75 +1,51 @@
 import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
 
-const DEFAULT = ['google', 'bing', 'baidu']
-let engineInterface = {}
-let searchResult = {}
 
 function init(){
     getTopSites()
-    initEngines(DEFAULT)
-
     let searchBtn = document.getElementById('serach')
-    let inputValue= document.getElementById('searchInput')
+    let searchInput= document.getElementById('searchInput')
 
     searchBtn.addEventListener('click',()=>{
-        if(!inputValue.value) return
-        batchFetchSearch(inputValue.value, 1)
+        sendToSearch(searchInput.value)
+    })
+    document.addEventListener('keyup', (e)=>{
+        if(e.key == 'Enter'){
+            sendToSearch(searchInput.value)
+        }
     })
 }
 
-function initEngines(engines){
-    for (let i = 0; i < engines.length; i++) {
-        const engineName = engines[i];
-        engineInterface[engineName] = new Universal(Config[engineName])
-    }
+function sendToSearch(value){
+    if(!value) return
+    console.log('value: ', value);
+
 }
 
-
-// 渲染结果到页面
-function renderResult(){
-    let wrap= document.getElementById('result')
-    let a = ''
-    for (const key in searchResult) {
-        if (Object.hasOwnProperty.call(searchResult, key)) {
-            const result = searchResult[key];
-            for (let i = 0; i < result.length; i++) {
-                const item = result[i];
-                let c = `<div>
-                    <div>${item.title}</div>
-                    <div>${item.content}</div>
-                </div>`
-
-                a+=c
-            }
-        }
+function renderTopSites(list){
+    let wrap = document.getElementById('topViews')
+    let result = '<ul>'
+    for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        console.log(item)
+        let src = `chrome://favicon2/?size=24&scale_factor=1x&show_fallback_monogram=&page_url=${item.url}`
+        let li = `<li>
+                <img src="${src}" />
+                <p>${item.title}</p>
+                </li>`
+        result+=li
     }
-    wrap.innerHTML = a
-}
-
-function batchFetchSearch(keyword, page){
-    let keys = Object.keys(engineInterface)
-    let promise_all = []
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        let engine = engineInterface[key]
-        promise_all.push(engine.getSearchResult(keyword, page))
-    }
-    Promise.all(promise_all).then((ress)=>{
-        for (let i = 0; i < DEFAULT.length; i++) {
-            const key = DEFAULT[i];
-            searchResult[key] = ress[i]
-        }
-        renderResult()
-    }).catch((e)=>{
-        console.log(e)
-    })
+    result += '</ul>'
+    console.log(result)
+    wrap.innerHTML = result
 }
 
 // 获取 访问最高的页面
 function getTopSites(){
     chrome.topSites.get((urls)=>{
-        console.log(urls)
+        renderTopSites(urls)
+
     })
 }
 
