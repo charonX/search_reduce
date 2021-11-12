@@ -13,11 +13,18 @@ function fetchUrl(url,sendResponse,sender){
     })
 }
 
-function getImgData(url,sendResponse,sender){
+function getImgData(url, sendResponse, sender){
     let data = chrome.runtime.getURL(url)
-    console.log(data)
     sendResponse(data)
 }
+
+function jumpURL(data, sendResponse, sender){
+    const {tabUrl,tab,value} = data
+    chrome.tabs.update(tab,{
+        url:tabUrl
+    })
+}
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.messageType == 'fetch') {
@@ -27,6 +34,12 @@ chrome.runtime.onMessage.addListener(
 
       if (request.messageType == 'img') {
         getImgData(request.url,sendResponse)
+        return true;
+      }
+
+      if (request.messageType == 'changeURL') {
+        console.log('request: ', request);
+        jumpURL(request.data,sendResponse)
         return true;
       }
 });

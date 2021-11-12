@@ -14,7 +14,8 @@
   "permissions": [
     "webRequest",
     "storage",
-    "topSites"
+    "topSites",
+    "tabs"
   ],
   "host_permissions": [
     "http://*/*",

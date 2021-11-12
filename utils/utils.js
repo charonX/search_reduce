@@ -43,3 +43,14 @@ export function getHiddenParams(dom){
     }
     return result
 }
+
+export function getUrlDomain(url){
+    let dom = document.createElement('a');
+    dom.href = url;
+    
+    const {href,protocol,host,hostname,prot,pathname,search,hash,origin} = dom
+
+    return {
+        href,protocol,host,hostname,prot,pathname,search,hash,origin
+    }
+}

@@ -6,16 +6,9 @@ let engineInterface = {}
 let searchResult = {}
 
 function init(){
-    getTopSites()
     initEngines(DEFAULT)
-
-    let searchBtn = document.getElementById('serach')
-    let inputValue= document.getElementById('searchInput')
-
-    searchBtn.addEventListener('click',()=>{
-        if(!inputValue.value) return
-        batchFetchSearch(inputValue.value, 1)
-    })
+    let kw = new URL(window.location.href).searchParams.get('kw')
+    batchFetchSearch(kw, 1)
 }
 
 function initEngines(engines){
@@ -63,13 +56,6 @@ function batchFetchSearch(keyword, page){
         renderResult()
     }).catch((e)=>{
         console.log(e)
-    })
-}
-
-// 获取 访问最高的页面
-function getTopSites(){
-    chrome.topSites.get((urls)=>{
-        console.log(urls)
     })
 }
 

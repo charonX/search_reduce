@@ -1,7 +1,4 @@
-import Universal from '../engine/universal.js'
-import { Config } from '../engine/config.js'
-
-
+import {getUrlDomain} from '../utils/utils.js'
 function init(){
     getTopSites()
     let searchBtn = document.getElementById('serach')
@@ -19,25 +16,29 @@ function init(){
 
 function sendToSearch(value){
     if(!value) return
-    console.log('value: ', value);
-
+    chrome.tabs.getCurrent((tab)=>{
+        chrome.runtime.sendMessage(
+            {
+                messageType: 'changeURL',
+                data:{
+                    tabUrl:'../newtab/result.html?kw=' + value,
+                    tab:tab.id
+                }
+            },
+        )
+    })
 }
 
 function renderTopSites(list){
     let wrap = document.getElementById('topViews')
-    let result = '<ul>'
+    let result = ''
     for (let i = 0; i < list.length; i++) {
         const item = list[i];
-        console.log(item)
-        let src = `chrome://favicon2/?size=24&scale_factor=1x&show_fallback_monogram=&page_url=${item.url}`
-        let li = `<li>
-                <img src="${src}" />
-                <p>${item.title}</p>
-                </li>`
+        let img_url = getUrlDomain(item.url).origin + '/favicon.ico'
+        let src = img_url
+        let li = `<li><a href="${item.url}" target="_blank" ><img src="${src}" alt="${item.title}" /></a></li>`
         result+=li
     }
-    result += '</ul>'
-    console.log(result)
     wrap.innerHTML = result
 }
 
