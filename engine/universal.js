@@ -21,14 +21,16 @@ export default class Universal{
 
     getSearchUrl(keyword, page){
         let p = {
-            [this.config.keyword]:encodeURIComponent(keyword),
+            [this.config.keyword]:this.checkkw(keyword),
         }
         let url_params = Object.assign(p, this.params)
-        console.log('url_params: ', url_params);
         let result = this.config.baseUrl + objToQuery(url_params)
-        console.log('result: ', result);
 
         return result
+    }
+
+    checkkw(keyword){
+        return keyword.replaceAll(' ',this.config.space)
     }
 
     fetchUrl(url){
@@ -54,7 +56,6 @@ export default class Universal{
         let dom = parser.parseFromString(res, "text/html");
 
         this.searchResult = dom
-        console.log('dom: ', dom);
 
         let result = getContentWithRule(dom, this.config.rule)
         // this.__updateSearchParams(dom)

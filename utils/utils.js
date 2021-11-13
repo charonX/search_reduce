@@ -19,12 +19,12 @@ export function getContentWithRule(dom, querySelectRule){
         const one = list[i];
         let title = one.querySelector(querySelectRule['title'])
         let content = one.querySelector(querySelectRule['content'])
-        
+        let link = one.querySelector(querySelectRule['link'])
         if(!title || !content) continue
-
         result.push({
-            title:title.outerHTML,
-            content:content.outerHTML,
+            title:title.innerText,
+            content:content.innerText,
+            link:link.href
         })
     }
     return result

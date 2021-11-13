@@ -9,6 +9,19 @@ function init(){
     initEngines(DEFAULT)
     let kw = new URL(window.location.href).searchParams.get('kw')
     batchFetchSearch(kw, 1)
+
+    
+    let searchBtn = document.getElementById('serach')
+    let searchInput= document.getElementById('searchInput')
+
+    searchBtn.addEventListener('click',()=>{
+        batchFetchSearch(searchInput.value, 1)
+    })
+    document.addEventListener('keyup', (e)=>{
+        if(e.key == 'Enter'){
+            batchFetchSearch(searchInput.value, 1)
+        }
+    })
 }
 
 function initEngines(engines){
@@ -23,20 +36,23 @@ function initEngines(engines){
 function renderResult(){
     let wrap= document.getElementById('result')
     let a = ''
+    let cc = []
     for (const key in searchResult) {
         if (Object.hasOwnProperty.call(searchResult, key)) {
             const result = searchResult[key];
             for (let i = 0; i < result.length; i++) {
                 const item = result[i];
-                let c = `<div>
-                    <div>${item.title}</div>
-                    <div>${item.content}</div>
+                cc.push(item)
+                let c = `<div class="result_block">
+                    <div class="title"><a href="${item.link}" target="_blank">${item.title}</a></div>
+                    <div class="content">${item.content}</div>
                 </div>`
 
                 a+=c
             }
         }
     }
+    console.log(cc)
     wrap.innerHTML = a
 }
 

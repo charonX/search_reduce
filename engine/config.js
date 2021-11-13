@@ -5,6 +5,7 @@ export const Config = {
         'keyword':'wd',
         'laseSearch':'op',
         'page':'pn',
+        'space':' ',
         'params':{
             rn :20, // pageSize
             // tn:"baiduhome_pg",
