@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "version":"0.0.1",
-  "name": "SearchBlock",
+  "name": "SearchReduce",
   "options_page": "options/index.html",
   "background": { "service_worker": "background/main.js" },
   "chrome_url_overrides": {
