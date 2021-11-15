@@ -54,3 +54,5 @@ export function getUrlDomain(url){
         href,protocol,host,hostname,prot,pathname,search,hash,origin
     }
 }
+
+// <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
