@@ -1,5 +1,6 @@
 export function Set(key, value, sync=false){
     return new Promise((resolve,reject)=>{
+        console.log(key,value)
         try{
             if(!key){
                 reject('key is empty')
@@ -10,7 +11,6 @@ export function Set(key, value, sync=false){
                     resolve(res)
                 });
             }else{
-                key,value
                 chrome.storage.local.set({[key]: value}, function(res) {
                     console.log('res: ', res);
                     resolve(res)

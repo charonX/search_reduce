@@ -12,9 +12,8 @@ export default class Icon{
     async initIcon(){
         try{
             let storage = await Get(this.name)
-            // this.favicon = storage[this.name]
-            console.log('this.favicon: ', this.favicon);
             if(!!storage[this.name]){
+                this.favicon = storage[this.name]
                 return
             }
             Set(this.name, this.favicon)
@@ -35,14 +34,10 @@ export default class Icon{
     async getFavicon(url){
         let domain = getUrlDomain(url)
         const result = this.favicon[domain.host]
-        console.log('result: ', result);
         if (result) return result
         
-        console.log('domain: ', domain);
         let ico = await this.getIcon(domain.origin)
-        console.log('ico: ', ico);
         let imgData = await getImgDataURI(ico)
-        console.log('imgData: ', imgData);
         this.__updateFavicon(domain.host, imgData)
         return ico
     }
@@ -78,6 +73,7 @@ export default class Icon{
     }
     __updateFavicon(name,value){
         this.favicon[name] = value
+        console.log("🚀 ~ file: icon.js ~ line 83 ~ Icon ~ __updateFavicon ~ this.favicon", this.favicon)
 
         Set(this.name, this.favicon)
     }

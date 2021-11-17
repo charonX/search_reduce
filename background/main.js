@@ -53,7 +53,6 @@ chrome.runtime.onMessage.addListener(
       }
 
       if (request.messageType == 'changeURL') {
-        console.log('request: ', request);
         jumpURL(request.data,sendResponse)
         return true;
       }

@@ -1,8 +1,6 @@
 import Icon from '../engine/icon.js'
 import Shortcut from '../engine/shortcut.js'
 
-
-chrome.storage.local.clear()
 const icon = new Icon()
 const shortcut = new Shortcut(icon)
 
