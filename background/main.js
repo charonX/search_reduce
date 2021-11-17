@@ -1,3 +1,4 @@
+// 获取URL内容
 function fetchUrl(url,sendResponse,sender){
     fetch(url)
     .then(response => response.text())
@@ -13,11 +14,25 @@ function fetchUrl(url,sendResponse,sender){
     })
 }
 
+// 获取图片Base64格式
 function getImgData(url, sendResponse, sender){
-    let data = chrome.runtime.getURL(url)
-    sendResponse(data)
+    fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => {
+        sendResponse({
+            success:true,
+            data:btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)))
+        })
+    })
+    .catch(error => {
+        sendResponse({
+            success:false,
+            err:error
+        })
+    })
 }
 
+// 跳转文件路径
 function jumpURL(data, sendResponse, sender){
     const {tabUrl,tab,value} = data
     chrome.tabs.update(tab,{

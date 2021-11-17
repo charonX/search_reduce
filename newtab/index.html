@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="../static/normalize.css">
-    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/spectre.min.css">
     <link rel="stylesheet" href="../static/style.css">
     <style>
       html,body,.container{
@@ -16,19 +16,6 @@
       }
       .row{
         margin:0 0 20px;
-      }
-      .top_views ul{
-        width: 500px;
-        margin: auto;
-      }
-      .top_views ul li{
-        float: left;
-        margin:20px;
-      }
-      .top_views img{
-        width:50px;
-        border:1px solid #eee;
-        border-radius: 25px;
       }
       .search_wrap{
         position: relative;
@@ -63,8 +50,8 @@
   </head>
   <body>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-6 align-self-center">
+      <div class="columns">
+        <div class="column col-6 col-mx-auto">
           <div class="search_wrap">
             <input type="text" id="searchInput">
             <span id="serach">
@@ -77,11 +64,12 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-6 align-items-center">
-          <div class="top_views"><ul id="topViews" class="clearfix"></ul></div>
+      <div class="columns">
+        <div class="column col-6 col-mx-auto">
+          <div class="top_views" id="topViews"></div>
         </div>
       </div>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

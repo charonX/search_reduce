@@ -1,4 +1,4 @@
-import { getUrlDomain } from '../utils/utils.js'
+import { getUrlDomain, getImgDataURI } from '../utils/utils.js'
 import { Config } from '../engine/config.js'
 import { Set, Get} from '../utils/storage.js'
 
@@ -11,29 +11,42 @@ export default class Icon{
     }
     async initIcon(){
         try{
-            this.favicon = await Get(this.name)
+            let storage = await Get(this.name)
+            // this.favicon = storage[this.name]
+            console.log('this.favicon: ', this.favicon);
+            if(!!storage[this.name]){
+                return
+            }
+            Set(this.name, this.favicon)
+            
             const configKeys = Object.keys(Config)
             for (let i = 0; i < configKeys.length; i++) {
                 const key = configKeys[i];
                 const item = Config[key]
                 const domain = getUrlDomain(item.baseUrl)
-                if(!this.favicon[domain.host]){
-                    let ico = await this.getIcon(domain.origin)
-                    this.favicon[domain.host] = ico
-                }
+                let ico = await this.getIcon(domain.origin)
+                this.__updateFavicon(domain.host, ico)
             }
+
         }catch(e){
             console.log(e)
         }
-
-        console.log(this.favicon)
     }
-    getFavicon(url){
-        return ''
-        return this.favicon[getUrlDomain(url).host]
+    async getFavicon(url){
+        let domain = getUrlDomain(url)
+        const result = this.favicon[domain.host]
+        console.log('result: ', result);
+        if (result) return result
+        
+        console.log('domain: ', domain);
+        let ico = await this.getIcon(domain.origin)
+        console.log('ico: ', ico);
+        let imgData = await getImgDataURI(ico)
+        console.log('imgData: ', imgData);
+        this.__updateFavicon(domain.host, imgData)
+        return ico
     }
     getIcon(url){
-        console.log('url: ', url);
         return new Promise((resolve, reject) => {
             chrome.runtime.sendMessage(
                 {
@@ -62,22 +75,10 @@ export default class Icon{
                 }
             );
         })
-    }   
+    }
+    __updateFavicon(name,value){
+        this.favicon[name] = value
+
+        Set(this.name, this.favicon)
+    }
 }
-
-
-// export default async function getFavicon(url){
-//     let domain = getUrlDomain(url)
-//     let fav_storage = await Get(favicon)
-//     console.log('fav_storage: ', fav_storage);
-//     let result = ''
-//     if(fav_storage){
-//          result = fav_storage[domain.host]
-//          console.log('result: ', result);
-//          return result
-//     }else{
-//         result = await getIcon(domain.origin)
-//         console.log('result-get: ', result);
-//         return result
-//     }
-// }

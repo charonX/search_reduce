@@ -1,12 +1,12 @@
 import Icon from '../engine/icon.js'
 import Shortcut from '../engine/shortcut.js'
 
+
+chrome.storage.local.clear()
 const icon = new Icon()
-const shortcut = new Shortcut()
+const shortcut = new Shortcut(icon)
 
 function init(){
-    getTopSites()
-    
     let searchBtn = document.getElementById('serach')
     let searchInput= document.getElementById('searchInput')
 
@@ -32,26 +32,6 @@ function sendToSearch(value){
                 }
             },
         )
-    })
-}
-
-function renderTopSites(list){
-    let wrap = document.getElementById('topViews')
-    let result = ''
-    for (let i = 0; i < list.length; i++) {
-        const item = list[i];
-        let img_url = icon.getFavicon(item.url)
-        let src = img_url
-        let li = `<li><a href="${item.url}"><img src="${src}" alt="${item.title}" /></a></li>`
-        result+=li
-    }
-    wrap.innerHTML = result
-}
-
-// 获取 访问最高的页面
-function getTopSites(){
-    chrome.topSites.get((urls)=>{
-        renderTopSites(urls)
     })
 }
 

@@ -55,4 +55,20 @@ export function getUrlDomain(url){
     }
 }
 
-// <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+export function getImgDataURI(imgUrl){
+    return new Promise((resolve, reject)=>{
+        chrome.runtime.sendMessage(
+            {
+                messageType: 'img',
+                url:imgUrl,
+            },
+            (res) => {
+                if(res.success){
+                    let base = `data:image/png;base64,${res.data}`
+                    resolve(base)
+                }else{
+                    reject(res.err)
+                }
+            })
+    })
+}
