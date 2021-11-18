@@ -24,6 +24,7 @@ export default class Background{
     }
 
     __setDom(imgData){
+        this.dom.className = 'animate__animated animate__fadeIn'
         this.dom.style.backgroundImage = `url(${imgData})`
     }
 
