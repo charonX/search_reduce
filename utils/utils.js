@@ -1,3 +1,4 @@
+import { Get } from '../utils/storage.js'
 // 把 Object 转换为 Query text
 export function objToQuery(data){
     let str = [];
@@ -64,11 +65,23 @@ export function getImgDataURI(imgUrl){
             },
             (res) => {
                 if(res.success){
-                    let base = `data:image/png;base64,${res.data}`
+                    let bufferString = ''
+                    // 不一次性使用 String.fromCharCode(...res.data)处理数据, 是为了兼容处理溢出错误
+                    for (let i = 0; i < res.data.length; i++) {
+                        const val = res.data[i];
+                        bufferString += String.fromCharCode(val)
+                    }
+                    let btoas = btoa(bufferString)
+                    let base = `data:image/png;base64,${btoas}`
                     resolve(base)
                 }else{
                     reject(res.err)
                 }
-            })
+            }
+        )
     })
+}
+
+export function changeTitle(text){
+    document.title = `${text} - Search Reduce` 
 }

@@ -27,10 +27,12 @@ export default class Shortcut{
             const item = list[i];
             let img_url = await this.icon.getFavicon(item.url)
             let src = img_url
-            let li = `<div class="chip" data-url="${item.url}"">
-                <img src="${src}" class="avatar avatar-sm">
-                ${item.title}
-                <a href="#" class="btn btn-clear" aria-label="Close" role="button"></a>
+            let li = `<div class="chip">
+                <a href="${item.url}">
+                    <img src="${src}" class="avatar avatar-sm">
+                    ${item.title}
+                    <span class="btn btn-clear" aria-label="Close" role="button"></span>
+                </a>
                 </div>`
             result+=li
         }

@@ -15,16 +15,18 @@ function fetchUrl(url,sendResponse,sender){
 }
 
 // 获取图片Base64格式
-function getImgData(url, sendResponse, sender){
+function getImgData(url, sendResponse){
     fetch(url)
     .then(response => response.arrayBuffer())
     .then(arrayBuffer => {
+        let result = [...new Uint8Array(arrayBuffer)]
         sendResponse({
             success:true,
-            data:btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)))
+            data:result
         })
     })
     .catch(error => {
+        console.log('error: ', error);
         sendResponse({
             success:false,
             err:error
@@ -33,7 +35,7 @@ function getImgData(url, sendResponse, sender){
 }
 
 // 跳转文件路径
-function jumpURL(data, sendResponse, sender){
+function jumpURL(data){
     const {tabUrl,tab,value} = data
     chrome.tabs.update(tab,{
         url:tabUrl
@@ -53,7 +55,7 @@ chrome.runtime.onMessage.addListener(
       }
 
       if (request.messageType == 'changeURL') {
-        jumpURL(request.data,sendResponse)
+        jumpURL(request.data)
         return true;
       }
 });

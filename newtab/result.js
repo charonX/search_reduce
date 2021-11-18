@@ -1,5 +1,6 @@
 import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
+import { changeTitle } from '../utils/utils.js'
 
 const DEFAULT = ['google', 'bing', 'baidu']
 let engineInterface = {}
@@ -23,10 +24,6 @@ function init(){
             batchFetchSearch(searchInput.value, 1)
         }
     })
-}
-
-function chengePageTitle(text){
-    document.title = `${text} - Search Reduce` 
 }
 
 function initEngines(engines){
@@ -62,7 +59,7 @@ function renderResult(){
 }
 
 function batchFetchSearch(keyword, page){
-    chengePageTitle(keyword)
+    changeTitle(keyword)
     let keys = Object.keys(engineInterface)
     let promise_all = []
     for (let i = 0; i < keys.length; i++) {
