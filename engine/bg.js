@@ -43,6 +43,8 @@ export default class Background{
 
     __checkBackground(){
         // 未来判断背景图类型设置用
+        // 背景图网站
+        // https://wallhaven.cc/latest?page=2
         this.__getBackground()
     }
 
