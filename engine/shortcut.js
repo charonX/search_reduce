@@ -31,6 +31,8 @@ export default class Shortcut{
             let img_url = await this.icon.getFavicon(item.url)
             let src = img_url
             let li = `<a href="${item.url}" class="tile">
+                    <i class="icon icon-delete" title="删除"></i>
+                    <i class="icon icon-edit" title="编辑"></i>
                     <div class="tile-icon"><img src="${src}" class="avatar avatar-sm"></div>
                     <div class="tile-title"><span>${item.title}</span></div>
                 </a>`
