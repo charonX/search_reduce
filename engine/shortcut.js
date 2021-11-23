@@ -6,6 +6,7 @@ export default class Shortcut{
         this.shortcuts = []
         this.icon = icon
         this.dom = document.getElementById('topViews')
+        this.modelDom = document.getElementById('addShortCut')
         this.__addEvent()
         this.__init()
     }
@@ -28,15 +29,26 @@ export default class Shortcut{
         let result = ''
         for (let i = 0; i < list.length; i++) {
             const item = list[i];
-            let img_url = await this.icon.getFavicon(item.url)
+            let img_url = ''
+            try{
+                img_url = await this.icon.getFavicon(item.url)
+            }catch(e){
+                console.log(e)
+            }
             let src = img_url
             let li = `<a href="${item.url}" class="tile">
-                    <i class="icon icon-delete" title="删除"></i>
-                    <i class="icon icon-edit" title="编辑"></i>
+                    <i class="icon icon-delete" data-index="${i}" aria-label="delete" title="删除"></i>
+                    <i class="icon icon-edit" data-index="${i}" aria-label="edit" title="编辑"></i>
                     <div class="tile-icon"><img src="${src}" class="avatar avatar-sm"></div>
                     <div class="tile-title"><span>${item.title}</span></div>
                 </a>`
             result+=li
+        }
+        if(list.length < 10){
+            result += `<a href="#" class="tile" aria-label="new">
+            <div class="tile-icon"><i class="icon icon-plus"></i></div>
+            <div class="tile-title"><span>添加快捷方式</span></div>
+        </a>`
         }
         this.dom.innerHTML = result
     }
@@ -51,23 +63,92 @@ export default class Shortcut{
     __addEvent(){
         this.dom.addEventListener('click',(e)=>{
             let target = e.target
-            if(target.className == 'btn btn-clear'){
-                this.remove(+target.dataset.index)
-                this.__renderTopSites()
+            let type = target.getAttribute('aria-label')
+            switch(type){
+                case 'delete':
+                    e.preventDefault();
+                    this.remove(+target.dataset.index)
+                    return
+                case 'edit':
+                    e.preventDefault();
+                    this.add(+target.dataset.index)
+                    return
+                case 'new':
+                    e.preventDefault();
+                    this.add()
+                    return
             }
         })
-    }
-    add(){
 
+        this.modelDom.addEventListener('click',(e)=>{
+            let target = e.target
+            let type = target.getAttribute('aria-label')
+            switch(type){
+                case 'Close':
+                    this.modelDom.classList.remove("active");
+                    return
+                case 'Submit':
+                    this.submit()
+                    this.modelDom.classList.remove("active");
+                    return
+            }
+
+        })
+    }
+    add(index){
+        let data = this.shortcuts[index]
+        let contentDom = document.getElementById('modal-content')
+        let title = this.modelDom.querySelector('.modal-title')
+
+        if(!!data){
+            title.innerText = '编辑'
+            this.modelDom.setAttribute('data-index',index)
+        }else{
+            title.innerText = '新建'
+            data = {}
+        }
+
+        let content = `<div class="form-group">
+            <label class="form-label" for="input-example-7">名称</label>
+            <input class="form-input" id="input-example-7" type="text" placeholder="Name" value="${data.title || ''}">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="input-example-7">网址</label>
+            <input class="form-input" id="input-example-7" type="text" placeholder="URL" value="${data.url || ''}">
+        </div>`
+        contentDom.innerHTML = content
+        this.modelDom.classList.add("active");
     }
     remove(index){
-        console.log(index)
         this.shortcuts.splice(index,1)
         this.__setStorage()
     }
 
+    submit(){
+        let index = this.modelDom.getAttribute('data-index')
+        let input = this.modelDom.querySelectorAll('input')
+        let name = input[0].value
+        let url = input[1].value
+        if (!!name && !!url){
+            if(index == ''){
+                this.shortcuts.push({
+                    title:name,
+                    url,
+                })
+            }else{
+                this.shortcuts[index] = {
+                    title:name,
+                    url,
+                }
+            }
+            this.__setStorage()
+        }
+
+    }
+
     __setStorage(){
         Set(this.name, this.shortcuts)
+        this.__renderTopSites()
     }
 }
 

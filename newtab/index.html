@@ -100,7 +100,8 @@
       .top_views .tile:hover{
         background-color: rgba(255, 255, 255, .1);
       }
-      .top_views .tile .icon{
+      .top_views .tile .icon-delete,
+      .top_views .tile .icon-edit{
         position: absolute;
         top:5px;
         right:5px;
@@ -140,7 +141,7 @@
         width: 88px;
         margin-top: 6px;
         padding: 2px 8px;
-        font-size: 13px;
+        font-size: 12px;
         align-items: center;
         border-radius: 18px;
         color: rgba(248, 249, 250, 1);
@@ -181,7 +182,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal-sm" id="addShortCut">
+    <div class="modal modal-sm" id="addShortCut" data-index="">
       <a class="modal-overlay" href="#modals-sizes" aria-label="Close"></a>
       <div class="modal-container" role="document">
         <div class="modal-header"><a class="btn btn-clear float-right" href="#modals-sizes" aria-label="Close"></a>
@@ -189,7 +190,7 @@
         </div>
         <div class="modal-body">
           <div class="content">
-            <form>
+            <form id="modal-content">
               <div class="form-group">
                 <label class="form-label" for="input-example-7">名称</label>
                 <input class="form-input" id="input-example-7" type="text" placeholder="Name">
@@ -202,7 +203,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary">Submit</button><a class="btn btn-link" href="#modals-sizes" aria-label="Close">Close</a>
+          <button class="btn btn-primary" aria-label="Submit">Submit</button><a class="btn btn-link" href="#modals-sizes" aria-label="Close">Close</a>
         </div>
       </div>
     </div>
