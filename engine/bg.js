@@ -5,6 +5,7 @@ export default class Background{
     constructor(){
         this.name = 'background'
         this.dom = document.getElementById('bg')
+        this.btnRefresh = document.getElementById('refreshBg')
         this.config = {}
         this.__init()
     }

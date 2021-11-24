@@ -7,7 +7,7 @@ export const Config = {
         'page':'pn',
         'space':' ',
         'params':{
-            rn :20, // pageSize
+            rn :10, // pageSize
             // tn:"baiduhome_pg",
             ie:'utf-8',
             // rsv_idx:2,
@@ -28,7 +28,7 @@ export const Config = {
         'page':'start',
         'space':'+',
         'params':{
-            num :20,
+            num :10,
             ie:'UTF-8'
         },
         'rule':{
@@ -50,7 +50,7 @@ export const Config = {
         },
         'rule':{
             result:'.b_algo',
-            title:'.b_title h2',
+            title:'.b_title h2 a',
             content:'.b_caption p',
             link:'a'
         }

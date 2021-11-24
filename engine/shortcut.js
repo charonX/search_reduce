@@ -31,15 +31,16 @@ export default class Shortcut{
             const item = list[i];
             let img_url = ''
             try{
-                img_url = await this.icon.getFavicon(item.url)
+                let icon = await this.icon.getFavicon(item.url)
+                img_url = `<img src="${icon}" class="avatar avatar-sm">`
             }catch(e){
                 console.log(e)
+                img_url = `<figure class="avatar" data-initial="${item.title.substring(0,1)}" style="background-color: #5755d9;"></figure>`
             }
-            let src = img_url
             let li = `<a href="${item.url}" class="tile">
                     <i class="icon icon-delete" data-index="${i}" aria-label="delete" title="删除"></i>
                     <i class="icon icon-edit" data-index="${i}" aria-label="edit" title="编辑"></i>
-                    <div class="tile-icon"><img src="${src}" class="avatar avatar-sm"></div>
+                    <div class="tile-icon">${img_url}</div>
                     <div class="tile-title"><span>${item.title}</span></div>
                 </a>`
             result+=li

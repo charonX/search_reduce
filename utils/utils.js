@@ -23,8 +23,8 @@ export function getContentWithRule(dom, querySelectRule){
         let link = one.querySelector(querySelectRule['link'])
         if(!title || !content) continue
         result.push({
-            title:title.innerText,
-            content:content.innerText,
+            title:title.innerHTML,
+            content:content.innerHTML,
             link:link.href
         })
     }
