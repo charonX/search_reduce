@@ -17,7 +17,8 @@ export const Config = {
             result:'.result.c-container.new-pmd',
             title:'h3 > a',
             content:'.c-abstract',
-            link:'h3 > a'
+            link:'h3 > a',
+            rrsr:'#rs_new td a'
         }
     },
     'google':{
@@ -35,7 +36,8 @@ export const Config = {
             result:'.g .tF2Cxc',
             title:'h3',
             content:'.VwiC3b.yXK7lf.MUxGbd.yDYNvb.lyLwlc.lEBKkf',
-            link:'a'
+            link:'a',
+            rrsr:'.y6Uyqe .s75CSd.OhScic.AB4Wff'
         }
     },
     'bing':{
@@ -45,14 +47,13 @@ export const Config = {
         'laseSearch':'pq',
         'page':'first',
         'space':'+',
-        'params':{
-            num :20,
-        },
+        'params':{},
         'rule':{
             result:'.b_algo',
             title:'.b_title h2 a',
             content:'.b_caption p',
-            link:'a'
+            link:'a',
+            rrsr:'.b_rrsr .b_vList li div'
         }
     }
 }

@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="../static/spectre.min.css">
     <link rel="stylesheet" href="../static/style.css">
     <style>
+      .container{
+        min-width: 1164px;
+      }
       .search_wrap{
         position: relative;
-        width: 300px;
+        width: 600px;
+        margin:20px 0 0 180px;
         padding-right: 10px;
         box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
         align-items: center;
@@ -20,7 +24,7 @@
       }
       .search_wrap #searchInput{
         background-color: transparent;
-        padding: 6px 4px 6px 8px;
+        padding: 8px 4px 8px 18px;
         flex: 1;
         border: 0;
         outline: none;
@@ -34,19 +38,20 @@
         margin: auto 4px;
         cursor: pointer;
       }
+      .search_wrap #serach svg{
+        width:25px;
+        height:25px;
+        vertical-align: middle;
+      }
       #result{
+        margin:20px 0 0 198px;
       }
       .result_block{
-        float:left;
-        width:400px;
-        padding:3px;
-        margin:0 20px 40px;
+        margin:0 0 20px;
         font-size:14px;
       }
       .result_block strong,
       .result_block em{
-        display: inline-block;
-        margin:0 3px;
         font-style: normal;
         font-weight:700;
         color:#c00;
@@ -59,22 +64,68 @@
         font-size:14px;
         color:rgba(117, 117, 117, 1)
       }
+      .result_block .link{
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #rrsr{
+        width:900px;
+        margin:10px 0 0 180px;
+        padding:0 0 0 18px;
+      }
+      #rrsr a{
+        display: inline-block;
+        margin: 0 20px 0 0;
+        color:rgba(41, 41, 41, 1);
+        font-size: 12px;
+      }
+      .tab{
+        padding:0 0 0 195px;
+        margin:20px 0 0;
+      }
     </style>
     <title>new Tab</title>
   </head>
   <body>
     <div class="container mx-auto">
-      <div class="search_wrap">
-        <input type="text" id="searchInput">
-        <span id="serach">
-          <svg viewBox="0 0 25 25" style="width:15px;height:15px;">
-            <path stroke="#007DAA" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10" fill="none" d="M23.75 23.75l-9-9"></path>
-            <circle stroke="#007DAA" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10" cx="9" cy="9" r="7.75" fill="none"></circle>
-            <path fill="none" d="M25 25h-25v-25h25z"></path>
-          </svg>
-        </span>
+      <div class="columns">
+        <div class="column">
+          <div class="search_wrap">
+            <input type="text" id="searchInput">
+            <span id="serach">
+              <svg viewBox="0 0 25 25">
+                <path stroke="#007DAA" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10" fill="none" d="M23.75 23.75l-9-9"></path>
+                <circle stroke="#007DAA" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10" cx="9" cy="9" r="7.75" fill="none"></circle>
+                <path fill="none" d="M25 25h-25v-25h25z"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
       </div>
-      <div id="result" class="clearfix"></div>
+      <div class="columns">
+        <div class="column">
+          <div id="rrsr"></div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <ul class="tab">
+            <li class="tab-item active">
+              <a href="#">Reduce</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column col-6">
+          <div id="result" class="clearfix"></div>
+        </div>
+        <div class="column col-6">
+          <div id="site_result" class="clearfix"></div>
+        </div>
+      </div>
     <script type="module" src="./result.js"></script>
   </body>
 </html>

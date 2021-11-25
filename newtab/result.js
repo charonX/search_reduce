@@ -36,26 +36,33 @@ function initEngines(engines){
 
 // 渲染结果到页面
 function renderResult(){
-    let wrap= document.getElementById('result')
-    let a = ''
+    let contentWrap= document.getElementById('result')
+    let rrsrWrap= document.getElementById('rrsr')
+    let contentHTML = ''
+    let rrsrHTML = ''
     let cc = []
     for (const key in searchResult) {
         if (Object.hasOwnProperty.call(searchResult, key)) {
-            const result = searchResult[key];
-            for (let i = 0; i < result.length; i++) {
-                const item = result[i];
+            const {content, rrsr} = searchResult[key];
+            for (let i = 0; i < content.length; i++) {
+                const item = content[i];
                 cc.push(item)
                 let c = `<div class="result_block">
                     <div class="title"><a href="${item.link}" target="_blank">${item.title}</a></div>
                     <div class="content">${item.content}</div>
+                    <div class="link">${item.link}</div>
                 </div>`
 
-                a+=c
+                contentHTML+=c
+            }
+            for (let i = 0; i < rrsr.length; i++) {
+                const item = rrsr[i];
+                rrsrHTML += `<a href="#">${item}</a>`
             }
         }
     }
-    console.log(cc)
-    wrap.innerHTML = a
+    contentWrap.innerHTML = contentHTML
+    rrsrWrap.innerHTML = rrsrHTML
 }
 
 function batchFetchSearch(keyword, page){

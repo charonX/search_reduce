@@ -1,5 +1,5 @@
 import { objToQuery, getHiddenParams } from '../utils/utils.js'
-import { getContentWithRule } from '../utils/utils.js'
+import { getContentWithRule, getRRSRWithRUle } from '../utils/utils.js'
 
 export default class Universal{
     constructor(config){
@@ -52,14 +52,23 @@ export default class Universal{
         
     }
     getContent(res){
+        console.log(this.config.name)
         let parser = new DOMParser();
         let dom = parser.parseFromString(res, "text/html");
 
         this.searchResult = dom
 
-        let result = getContentWithRule(dom, this.config.rule)
-        // this.__updateSearchParams(dom)
+        let result = {
+            content:getContentWithRule(dom, this.config.rule),
+            rrsr : this.__getRRSR(dom)
+        }
 
+        return result
+    }
+
+    __getRRSR(dom){
+        const rule = this.config.rule['rrsr']
+        let result=  getRRSRWithRUle(dom, rule)
         return result
     }
 

@@ -31,6 +31,17 @@ export function getContentWithRule(dom, querySelectRule){
     return result
 }
 
+// 根据规则获取相关搜索
+export function getRRSRWithRUle(dom ,rule){
+    let result = []
+    let list = dom.querySelectorAll(rule)
+    for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        result.push(item.innerText.trim())
+    }
+    return result
+}
+
 
 // 获取 dom 内 type 为 hidden 的 input 的 name 和 value 组成的 Object
 export function getHiddenParams(dom){
@@ -45,6 +56,7 @@ export function getHiddenParams(dom){
     return result
 }
 
+// 获取 URL 的相关内容
 export function getUrlDomain(url){
     let dom = document.createElement('a');
     dom.href = url;
@@ -56,6 +68,7 @@ export function getUrlDomain(url){
     }
 }
 
+// 获取图片 base64
 export function getImgDataURI(imgUrl){
     return new Promise((resolve, reject)=>{
         chrome.runtime.sendMessage(
@@ -82,6 +95,25 @@ export function getImgDataURI(imgUrl){
     })
 }
 
+// 改变网站title
 export function changeTitle(text){
     document.title = `${text} - Search Reduce` 
+}
+
+// 数组去重
+export function unique(arr, key){
+    let result = []
+    let obj = {}
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i]
+        let value = key ? item[key] : item
+        if(obj[value]){
+            continue
+        }else{
+            obj[value] = true
+            result.push(item)
+        }
+    }
+
+    return result
 }
