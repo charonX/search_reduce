@@ -1,6 +1,8 @@
 export const Config = {
     'baidu':{
         'name':'baidu',
+        'type': 'search',
+        'searchType':'dom',
         'baseUrl':'https://www.baidu.com/s?',
         'keyword':'wd',
         'laseSearch':'op',
@@ -23,6 +25,8 @@ export const Config = {
     },
     'google':{
         'name':'google',
+        'type': 'search',
+        'searchType':'dom',
         'baseUrl':'https://www.google.com/search?',
         'keyword':'q',
         'laseSearch':'aq',
@@ -42,6 +46,8 @@ export const Config = {
     },
     'bing':{
         'name':'bing',
+        'type': 'search',
+        'searchType':'dom',
         'baseUrl':'https://www.bing.com/search?',
         'keyword':'q',
         'laseSearch':'pq',
@@ -55,5 +61,12 @@ export const Config = {
             link:'a',
             rrsr:'.b_rrsr .b_vList li div'
         }
+    },
+    'zhihu':{
+        'name':'bing',
+        'type': 'site',
+        'searchType':'xhr',
+        'baseUrl':'https://www.zhihu.com/search?',
+        'keyword':'q',
     }
 }
