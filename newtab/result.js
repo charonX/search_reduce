@@ -2,7 +2,7 @@ import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
 import { changeTitle } from '../utils/utils.js'
 
-const DEFAULT = ['google', 'bing', 'baidu']
+const DEFAULT = ['stackoverflow', 'segmentfault', 'bing', 'google', 'github']
 let engineInterface = {}
 let searchResult = {}
 

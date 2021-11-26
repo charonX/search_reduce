@@ -62,11 +62,54 @@ export const Config = {
             rrsr:'.b_rrsr .b_vList li div'
         }
     },
-    'zhihu':{
-        'name':'bing',
+    'github':{
+        'name':'github',
         'type': 'site',
-        'searchType':'xhr',
-        'baseUrl':'https://www.zhihu.com/search?',
+        'searchType':'dom',
+        'baseUrl':'https://github.com/search?',
         'keyword':'q',
+        'page':'p',
+        'space':'+',
+        'params':{
+            'type': 'Repositories'
+        },
+        'rule':{
+            result:'.repo-list .repo-list-item',
+            title:'.f4 a',
+            content:'p',
+            link:'.f4 a'
+        }
+    },
+    'segmentfault':{
+        'name':'segmentfault',
+        'type': 'site',
+        'searchType':'dom',
+        'baseUrl':'https://segmentfault.com/search?',
+        'keyword':'q',
+        'page':'page',
+        'space':'+',
+        'params':{},
+        'rule':{
+            result:'.list-group .list-group-item',
+            title:'a h5',
+            content:'.text-secondary',
+            link:'a'
+        }
+    },
+    'stackoverflow':{
+        'name':'stackoverflow',
+        'type': 'site',
+        'searchType':'dom',
+        'baseUrl':'https://stackoverflow.com/search?',
+        'keyword':'q',
+        'page':'page',
+        'space':' ',
+        'params':{},
+        'rule':{
+            result:'.js-search-results .search-result',
+            title:'.result-link h3 a',
+            content:'.excerpt',
+            link:'.result-link h3 a'
+        }
     }
 }
