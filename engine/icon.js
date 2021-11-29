@@ -23,7 +23,7 @@ export default class Icon{
                 const key = configKeys[i];
                 const item = Config[key]
                 const domain = getUrlDomain(item.baseUrl)
-                let ico = await this.getIcon(domain.origin)
+                let ico = await this.__getIcon(domain.origin)
                 this.__updateFavicon(domain.host, ico)
             }
 
@@ -36,12 +36,12 @@ export default class Icon{
         const result = this.favicon[domain.host]
         if (result) return result
         
-        let ico = await this.getIcon(domain.origin)
+        let ico = await this.__getIcon(domain.origin)
         let imgData = await getImgDataURI(ico)
         this.__updateFavicon(domain.host, imgData)
         return ico
     }
-    getIcon(url){
+    __getIcon(url){
         return new Promise((resolve, reject) => {
             chrome.runtime.sendMessage(
                 {
@@ -73,8 +73,6 @@ export default class Icon{
     }
     __updateFavicon(name,value){
         this.favicon[name] = value
-        console.log("🚀 ~ file: icon.js ~ line 83 ~ Icon ~ __updateFavicon ~ this.favicon", this.favicon)
-
         Set(this.name, this.favicon)
     }
 }

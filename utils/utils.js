@@ -1,4 +1,3 @@
-import { Get } from '../utils/storage.js'
 // 把 Object 转换为 Query text
 export function objToQuery(data){
     let str = [];
@@ -98,6 +97,19 @@ export function getImgDataURI(imgUrl){
 // 改变网站title
 export function changeTitle(text){
     document.title = `${text} - Search Reduce` 
+}
+
+// 改变网址参数
+export function changeURLParams(key, value){
+    let location = window.location
+    let params = new URLSearchParams(location.search)
+
+    params[key] = value
+
+    let url = location.origin + location.pathname + '?' + objToQuery(params)
+
+    return url
+
 }
 
 // 数组去重

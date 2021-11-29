@@ -9,6 +9,8 @@
     <style>
       .container{
         min-width: 1164px;
+        padding:0;
+        margin:0;
       }
       .search_wrap{
         position: relative;
@@ -43,12 +45,12 @@
         height:25px;
         vertical-align: middle;
       }
-      #result{
-        margin:20px 0 0 198px;
+      .result_wrap{
+        padding:20px 0 0;
       }
-      .result_block{
-        margin:0 0 20px;
-        font-size:14px;
+      .result-search{
+        width:680px;
+        margin:0 0 0 198px;
       }
       .result_block strong,
       .result_block em{
@@ -56,10 +58,16 @@
         font-weight:700;
         color:#c00;
       }
+      .result_block .title{
+        margin: 0 0 4px;
+      }
       .result_block .title a{
         font-size:18px;
-        color:rgba(41, 41, 41, 1)
+        line-height: 22px;
+        color:#001ba0;
+        text-decoration: underline;
       }
+      .result_block .title a:visited{color:#600090}
       .result_block .content{
         font-size:14px;
         color:rgba(117, 117, 117, 1)
@@ -67,8 +75,23 @@
       .result_block .link{
         overflow: hidden;
         width: 100%;
+        margin:4px 0 0;
+        font-size: 12px;
+        line-height: 15px;
         text-overflow: ellipsis;
         white-space: nowrap;
+        vertical-align: middle;
+      }
+      .result_block span{
+        line-height: 15px;
+        vertical-align: middle;
+      }
+      .result_block .link img{
+        display: inline-block;
+        width:15px;
+        height:15px;
+        margin:0 3px 0 0 ;
+        vertical-align: middle;
       }
       #rrsr{
         width:900px;
@@ -85,11 +108,27 @@
         padding:0 0 0 195px;
         margin:20px 0 0;
       }
+      .search_icon{
+        position: fixed;
+        left: -1px;
+        bottom: 20px;
+        border:1px solid #dadee4;
+      }
+      .search_icon .one{
+        width:50px;
+        height:50px;
+        padding:6px 0 0;
+        text-align: center;
+        border:1px solid #dadee4;
+      }
+      .divider{
+        margin: 20px 0;
+      }
     </style>
     <title>new Tab</title>
   </head>
   <body>
-    <div class="container mx-auto">
+    <div class="container">
       <div class="columns">
         <div class="column">
           <div class="search_wrap">
@@ -118,12 +157,18 @@
           </ul>
         </div>
       </div>
-      <div class="columns">
-        <div class="column col-6">
+      <div class="columns col-gapless result_wrap">
+        <div id="search_status" class="search_icon">
+        </div>
+        <div class="column col-6 result-search">
           <div id="result" class="clearfix"></div>
         </div>
-        <div class="column col-6">
-          <div id="site_result" class="clearfix"></div>
+        <div class="column">
+          <div id="result_site" class="clearfix">
+            <div class="card">
+              abc
+            </div>
+          </div>
         </div>
       </div>
     <script type="module" src="./result.js"></script>

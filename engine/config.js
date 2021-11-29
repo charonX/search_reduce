@@ -80,6 +80,25 @@ export const Config = {
             link:'.f4 a'
         }
     },
+    'github_issues':{
+        'name':'github issues',
+        'type': 'site',
+        'searchType':'dom',
+        'baseUrl':'https://github.com/search?',
+        'keyword':'q',
+        'page':'p',
+        'space':'+',
+        'params':{
+            'type': 'issues'
+        },
+        'rule':{
+            result:'.repo-list .repo-list-item',
+            title:'.f4 a',
+            content:'p',
+            link:'.f4 a'
+        }
+    },
+
     'segmentfault':{
         'name':'segmentfault',
         'type': 'site',

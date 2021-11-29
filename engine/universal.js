@@ -52,7 +52,6 @@ export default class Universal{
         
     }
     getContent(res){
-        console.log(this.config.name)
         let parser = new DOMParser();
         let dom = parser.parseFromString(res, "text/html");
 
