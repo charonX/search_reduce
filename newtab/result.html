@@ -12,10 +12,14 @@
         padding:0;
         margin:0;
       }
+      .logo{
+        width:160px;
+        margin:18px 0 0 20px;
+      }
       .search_wrap{
         position: relative;
         width: 600px;
-        margin:20px 0 0 180px;
+        margin:20px 0 0 0px;
         padding-right: 10px;
         box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
         align-items: center;
@@ -124,12 +128,18 @@
       .divider{
         margin: 20px 0;
       }
+
+      #result_site{
+        max-width: 500px;
+        padding: 0 0 0 40px
+      }
     </style>
     <title>new Tab</title>
   </head>
   <body>
     <div class="container">
       <div class="columns">
+        <div><img class="logo" src="../static/logo.png" /></div>
         <div class="column">
           <div class="search_wrap">
             <input type="text" id="searchInput">
@@ -166,7 +176,12 @@
         <div class="column">
           <div id="result_site" class="clearfix">
             <div class="card">
-              abc
+              <div class="card-header">
+                <div class="card-title h5">github</div>
+              </div>
+              <div class="card-body">
+                ...
+              </div>
             </div>
           </div>
         </div>
