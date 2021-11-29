@@ -1,7 +1,7 @@
 import Icon from '../engine/icon.js'
 import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
-import { changeTitle, changeURLParams } from '../utils/utils.js'
+import { changeTitle, changeURLParams, unique } from '../utils/utils.js'
 
 const DEFAULT_SEARCH = ['bing', 'google', 'baidu']
 const DEFAULT_SITE_SEARCH = ['stackoverflow.com', 'segmentfault.com', 'github', 'zhihu.com']
@@ -25,12 +25,10 @@ async function init(){
 
     searchBtn.addEventListener('click',()=>{
         window.location = changeURLParams("kw",searchInput.value)
-        // batchFetchSearch(searchInput.value, 1)
     })
     document.addEventListener('keyup', (e)=>{
         if(e.key == 'Enter'){
             window.location = changeURLParams("kw",searchInput.value)
-            // batchFetchSearch(searchInput.value, 1)
         }
     })
 }
@@ -43,12 +41,17 @@ async function initIcon(engines){
         const config = Config[engineName]
         let ico = await icon.getFavicon(config.baseUrl)
         icon_catch[config.name] = ico
-        content += `<div class="one"><figure class="avatar">
-        <img src="${ico}">
-        <span class="avatar-icon loading"></span>
-      </figure></div>`
+        content += __renderIconStatus({ico,status:'loading',name:config.name})
     }
     wrap.innerHTML = content
+}
+
+function __renderIconStatus(info){
+    let content = `<div class="one"><figure class="avatar">
+        <img src="${info.ico}">
+        <span class="avatar-icon ${info.status}" icon-status="${info.name}"></span>
+        </figure></div>`
+    return content
 }
 
 function initEngines(engines){
@@ -60,39 +63,32 @@ function initEngines(engines){
 
 
 // 渲染结果到页面
-function renderResult(){
+function __renderResult(){
     let contentWrap= document.getElementById('result')
-    let rrsrWrap= document.getElementById('rrsr')
     let contentHTML = ''
-    let rrsrHTML = ''
-    let cc = []
     searchResult.forEach((item)=>{
         contentHTML += item.content
     })
-    // for (const key in searchResult) {
-    //     if (Object.hasOwnProperty.call(searchResult, key)) {
-    //         const {content, rrsr} = searchResult[key];
-    //         for (let i = 0; i < content.length; i++) {
-    //             const item = content[i];
-    //             cc.push(item)
-    //             let c = 
-
-    //             contentHTML+=c
-    //         }
-    //         for (let i = 0; i < rrsr.length; i++) {
-    //             const item = rrsr[i];
-    //             rrsrHTML += `<a href="#">${item}</a>`
-    //         }
-    //     }
-    // }
     contentWrap.innerHTML = contentHTML
-    // rrsrWrap.innerHTML = rrsrHTML
+}
+
+function __renderRRSRContent(){
+    let rrsrWrap= document.getElementById('rrsr')
+    let rrsrHTML = ''
+    for (let i = 0; i < ssrsResult.length; i++) {
+        const item = ssrsResult[i];
+        rrsrHTML += `<a href="#">${item}</a>`
+    }
+    rrsrWrap.innerHTML = rrsrHTML
 }
 
 function renderSiteResult(){
 }
 
 function __updateEngineStatus(engine, status){
+    const { name } = engine.config
+    let dom = document.querySelector(`[icon-status='${name}']`)
+    console.log("🚀 ~ file: result.js ~ line 91 ~ __updateEngineStatus ~ dom", dom)
     switch(status){
         case 'error':
             break
@@ -134,7 +130,11 @@ function __checkResult(result, engine){
             })
         }   
     }
-    renderResult()
+
+    ssrsResult = ssrsResult.concat(rrsr)
+    ssrsResult = unique(ssrsResult)
+    __renderResult()
+    __renderRRSRContent()
 }
 
 // 发送搜索请求

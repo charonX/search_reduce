@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="../static/normalize.css">
     <link rel="stylesheet" href="../static/spectre.min.css">
+    <link rel="stylesheet" href="../static/spectre-icons.min.css">
     <link rel="stylesheet" href="../static/style.css">
     <style>
       .container{
@@ -97,11 +98,6 @@
         margin:0 3px 0 0 ;
         vertical-align: middle;
       }
-      #rrsr{
-        width:900px;
-        margin:10px 0 0 180px;
-        padding:0 0 0 18px;
-      }
       #rrsr a{
         display: inline-block;
         margin: 0 20px 0 0;
@@ -128,10 +124,12 @@
       .divider{
         margin: 20px 0;
       }
-
       #result_site{
         max-width: 500px;
         padding: 0 0 0 40px
+      }
+      #result_site .card{
+        margin:0 0 20px;
       }
     </style>
     <title>new Tab</title>
@@ -155,11 +153,6 @@
       </div>
       <div class="columns">
         <div class="column">
-          <div id="rrsr"></div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
           <ul class="tab">
             <li class="tab-item active">
               <a href="#">Reduce</a>
@@ -175,6 +168,22 @@
         </div>
         <div class="column">
           <div id="result_site" class="clearfix">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title h5">相关搜索</div>
+              </div>
+              <div class="card-body">
+                <div id="rrsr"></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title h5">github</div>
+              </div>
+              <div class="card-body">
+                ...
+              </div>
+            </div>
             <div class="card">
               <div class="card-header">
                 <div class="card-title h5">github</div>
