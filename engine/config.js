@@ -31,7 +31,7 @@ export const Config = {
         'keyword':'q',
         'laseSearch':'aq',
         'page':'start',
-        'space':'+',
+        'space':' ',
         'params':{
             num :10,
             ie:'UTF-8'
@@ -52,7 +52,7 @@ export const Config = {
         'keyword':'q',
         'laseSearch':'pq',
         'page':'first',
-        'space':'+',
+        'space':' ',
         'params':{},
         'rule':{
             result:'.b_algo',
@@ -87,7 +87,7 @@ export const Config = {
         'baseUrl':'https://github.com/search?',
         'keyword':'q',
         'page':'p',
-        'space':'+',
+        'space':' ',
         'params':{
             'type': 'issues'
         },
@@ -106,7 +106,7 @@ export const Config = {
         'baseUrl':'https://segmentfault.com/search?',
         'keyword':'q',
         'page':'page',
-        'space':'+',
+        'space':' ',
         'params':{},
         'rule':{
             result:'.list-group .list-group-item',

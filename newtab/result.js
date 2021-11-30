@@ -3,8 +3,8 @@ import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
 import { changeTitle, changeURLParams, unique } from '../utils/utils.js'
 
-const DEFAULT_SEARCH = ['bing', 'google', 'baidu']
-const DEFAULT_SITE_SEARCH = ['stackoverflow.com', 'segmentfault.com', 'github', 'zhihu.com']
+const DEFAULT_SEARCH = ['bing', 'google', 'baidu','github', 'segmentfault']
+// const DEFAULT_SITE_SEARCH = ['stackoverflow.com', 'segmentfault.com', 'github', 'zhihu.com']
 let engineInterface = {}
 let icon_catch = {}
 let searchResult = new Map()
@@ -60,10 +60,27 @@ function __renderIconStatus(info){
 }
 
 function initEngines(engines){
+    let site_tab = []
     for (let i = 0; i < engines.length; i++) {
         const engineName = engines[i];
         engineInterface[engineName] = new Universal(Config[engineName])
+        if(Config[engineName].type == 'site'){
+            site_tab.push(engineName)
+        }
     }
+    __initSiteTab(site_tab)
+}
+
+function __initSiteTab(list){
+    let dom = document.getElementById('site_tab')
+    let content = ''
+    for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        content += `<li class="tab-item ${i==0?'active':''}">
+                  <a href="#">${item}</a>
+                </li>`
+    }
+    dom.innerHTML = content
 }
 
 
@@ -124,20 +141,18 @@ function __renderResultContent(item ,origin){
     return result
 }
 
-// 检查返回结果
-function __checkResult(result, engine){
-    const {content, rrsr} = result;
+function __handleResultContent(content, rrsr, config){
     console.log('content, rrsr: ', content, rrsr);
     for (let i = 0; i < content.length; i++) {
-        const item = content[i];
+        const item = content[i]
         if(searchResult.has(item.link)){
             let t = searchResult.get(item.link)
-            t.origin.push(engine.config.name)
+            t.origin.push(config.name)
             t.content = __renderResultContent(item,t.origin)
         }else{
             searchResult.set(item.link,{
-                'origin':[engine.config.name],
-                'content':__renderResultContent(item,[engine.config.name])
+                'origin':[config.name],
+                'content':__renderResultContent(item,[config.name])
             })
         }   
     }
@@ -146,6 +161,27 @@ function __checkResult(result, engine){
     ssrsResult = unique(ssrsResult)
     __renderResult()
     __renderRRSRContent()
+}
+
+function __handleSiteContent(content, config){
+    console.log('config: ', config);
+    console.log('content: ', content);
+
+}
+
+// 检查返回结果
+function __checkResult(result, engine){
+    const { config } = engine
+    const {content, rrsr} = result
+    console.log(config.type)
+    switch(config.type){
+        case 'site':
+            __handleSiteContent(content,config)
+            break;
+        case 'search':
+            __handleResultContent(content, rrsr, config)
+            break;
+    }
 }
 
 // 发送搜索请求
