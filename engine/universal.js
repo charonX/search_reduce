@@ -56,9 +56,9 @@ export default class Universal{
         let dom = parser.parseFromString(res, "text/html");
 
         this.searchResult = dom
-
+        let content = getContentWithRule(dom, this.config.rule, this.config.baseUrl)
         let result = {
-            content:getContentWithRule(dom, this.config.rule),
+            content,
             rrsr : this.__getRRSR(dom)
         }
 

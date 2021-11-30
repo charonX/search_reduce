@@ -9,10 +9,8 @@ export function objToQuery(data){
 }
 
 // 根据选择器规则，从 Dom 中查找出 html 块
-export function getContentWithRule(dom, querySelectRule){
+export function getContentWithRule(dom, querySelectRule, baseUrl){
     let result = []
-    // let parser = new DOMParser();
-    // let dom = parser.parseFromString(doc, "text/html");
 
     let list = dom.querySelectorAll(querySelectRule['result'])
     for (let i = 0; i < list.length; i++) {
@@ -20,11 +18,17 @@ export function getContentWithRule(dom, querySelectRule){
         let title = one.querySelector(querySelectRule['title'])
         let content = one.querySelector(querySelectRule['content'])
         let link = one.querySelector(querySelectRule['link'])
+        let url = link.getAttribute('href')
+        baseUrl = getUrlDomain(baseUrl).origin
+        
+        if(url.search(/http:\/\/|https:\/\//g) == -1){
+            url = baseUrl + url
+        }
         if(!title || !content) continue
         result.push({
             title:title.innerHTML,
             content:content.innerHTML,
-            link:link.href
+            link:url
         })
     }
     return result

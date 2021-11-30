@@ -69,7 +69,7 @@ export const Config = {
         'baseUrl':'https://github.com/search?',
         'keyword':'q',
         'page':'p',
-        'space':'+',
+        'space':' ',
         'params':{
             'type': 'Repositories'
         },

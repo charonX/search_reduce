@@ -10,6 +10,7 @@ let icon_catch = {}
 let searchResult = new Map()
 let ssrsResult = []
 let kw = new URL(window.location.href).searchParams.get('kw')
+let siteResult = {}
 
 const icon = new Icon()
 
@@ -99,12 +100,9 @@ function __renderRRSRContent(){
     let rrsrHTML = ''
     for (let i = 0; i < ssrsResult.length; i++) {
         const item = ssrsResult[i];
-        rrsrHTML += `<a href="#">${item}</a>`
+        rrsrHTML += `<a href="${changeURLParams("kw",item)}">${item}</a>`
     }
     rrsrWrap.innerHTML = rrsrHTML
-}
-
-function renderSiteResult(){
 }
 
 function __updateEngineStatus(engine, status){
@@ -142,7 +140,6 @@ function __renderResultContent(item ,origin){
 }
 
 function __handleResultContent(content, rrsr, config){
-    console.log('content, rrsr: ', content, rrsr);
     for (let i = 0; i < content.length; i++) {
         const item = content[i]
         if(searchResult.has(item.link)){
@@ -163,17 +160,30 @@ function __handleResultContent(content, rrsr, config){
     __renderRRSRContent()
 }
 
-function __handleSiteContent(content, config){
-    console.log('config: ', config);
-    console.log('content: ', content);
 
+function __renderSiteResult(){
+    console.log(siteResult)
+    let contentWrap= document.getElementById('site_content')
+    let contentHTML = siteResult['github']
+    contentWrap.innerHTML = contentHTML
+}
+
+
+function __handleSiteContent(content, config){
+    let list = ''
+    for (let i = 0; i < content.length; i++) {
+        const item = content[i];
+        list += `<div><a href="${item.link}" target="_blank"/>${item.title}</a>${item.content}</div>`
+    }
+
+    siteResult[config.name] = list
+    __renderSiteResult()
 }
 
 // 检查返回结果
 function __checkResult(result, engine){
     const { config } = engine
     const {content, rrsr} = result
-    console.log(config.type)
     switch(config.type){
         case 'site':
             __handleSiteContent(content,config)
