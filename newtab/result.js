@@ -9,13 +9,13 @@ let engineInterface = {}
 let icon_catch = {}
 let searchResult = new Map()
 let ssrsResult = []
+let kw = new URL(window.location.href).searchParams.get('kw')
 
 const icon = new Icon()
 
 async function init(){
     await initIcon(DEFAULT_SEARCH)
     initEngines(DEFAULT_SEARCH)
-    let kw = new URL(window.location.href).searchParams.get('kw')
     batchFetchSearch(kw, 1)
 
     
@@ -41,16 +41,21 @@ async function initIcon(engines){
         const config = Config[engineName]
         let ico = await icon.getFavicon(config.baseUrl)
         icon_catch[config.name] = ico
-        content += __renderIconStatus({ico,status:'loading',name:config.name})
+        content += __renderIconStatus({
+            ico,
+            status:'loading avatar-icon',
+            name:config.name,
+            url:config.baseUrl + config.keyword + '=' + kw
+        })
     }
     wrap.innerHTML = content
 }
 
 function __renderIconStatus(info){
-    let content = `<div class="one"><figure class="avatar">
+    let content = `<div class="one"><a href="${info.url}"><figure class="avatar">
         <img src="${info.ico}">
-        <span class="avatar-icon ${info.status}" icon-status="${info.name}"></span>
-        </figure></div>`
+        <span class="${info.status}" icon-status="${info.name}"></span>
+        </figure></a></div>`
     return content
 }
 
@@ -88,13 +93,19 @@ function renderSiteResult(){
 function __updateEngineStatus(engine, status){
     const { name } = engine.config
     let dom = document.querySelector(`[icon-status='${name}']`)
-    console.log("🚀 ~ file: result.js ~ line 91 ~ __updateEngineStatus ~ dom", dom)
+    let class_status = 'loading avatar-icon'
     switch(status){
         case 'error':
-            break
+            class_status = 'avatar-presence busy'
+            break;
         case 'success':
-            break
+            class_status = 'avatar-presence online'
+            break;
+        case 'loading':
+            class_status = 'loading avatar-icon'
+            break;
     }
+    dom.className = class_status
 }
 
 function __renderResultContent(item ,origin){

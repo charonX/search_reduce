@@ -10,8 +10,8 @@ export default class Universal{
 
     getSearchResult(keyword, page = 1){
         return new Promise((resolve, reject) => {
-            const url = this.getSearchUrl(keyword, page)
-            this.fetchUrl(url).then((res)=>{
+            this.searchUrl = this.getSearchUrl(keyword, page)
+            this.fetchUrl(this.searchUrl).then((res)=>{
                 resolve(this.getContent(res))
             }).catch((res)=>{
                 reject(res)
