@@ -4,6 +4,7 @@
   "name": "SearchReduce",
   "options_page": "options/index.html",
   "background": { "service_worker": "background/main.js" },
+  "omnibox": { "keyword" : "sr" },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"
   },

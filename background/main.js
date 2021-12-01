@@ -42,6 +42,7 @@ function jumpURL(data){
     })
 }
 
+// message监听
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.messageType == 'fetch') {
@@ -58,4 +59,11 @@ chrome.runtime.onMessage.addListener(
         jumpURL(request.data)
         return true;
       }
+});
+
+// omnibox 事件监听
+chrome.omnibox.onInputEntered.addListener((text, disposition) => {
+    chrome.tabs.update({
+        url: '../newtab/result.html?kw=' + text
+    });
 });
