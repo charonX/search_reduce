@@ -81,7 +81,7 @@ export const Config = {
         }
     },
     'github_issues':{
-        'name':'github issues',
+        'name':'github_issues',
         'type': 'site',
         'searchType':'dom',
         'baseUrl':'https://github.com/search?',
@@ -92,7 +92,7 @@ export const Config = {
             'type': 'issues'
         },
         'rule':{
-            result:'.repo-list .repo-list-item',
+            result:'#issue_search_results .issue-list-item',
             title:'.f4 a',
             content:'p',
             link:'.f4 a'

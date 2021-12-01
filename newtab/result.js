@@ -3,7 +3,7 @@ import Universal from '../engine/universal.js'
 import { Config } from '../engine/config.js'
 import { changeTitle, changeURLParams, unique } from '../utils/utils.js'
 
-const DEFAULT_SEARCH = ['bing', 'google', 'baidu','github', 'segmentfault']
+const DEFAULT_SEARCH = ['bing', 'google', 'baidu','github', 'github_issues', 'segmentfault']
 // const DEFAULT_SITE_SEARCH = ['stackoverflow.com', 'segmentfault.com', 'github', 'zhihu.com']
 let engineInterface = {}
 let icon_catch = {}
@@ -82,6 +82,27 @@ function __initSiteTab(list){
                 </li>`
     }
     dom.innerHTML = content
+
+    dom.addEventListener('click',(e)=>{
+        __setSiteTabActive(e.target.innerText)
+        __renderSiteResult()
+    })
+}
+
+function __setSiteTabActive(name){
+    let dom = document.getElementById('site_tab')
+    let list = dom.querySelectorAll('li')
+    for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+
+        if(item.innerText == name){
+            item.className = 'tab-item active'
+        }else{
+            item.className = 'tab-item'
+        }
+    }
+
+
 }
 
 
@@ -162,9 +183,11 @@ function __handleResultContent(content, rrsr, config){
 
 
 function __renderSiteResult(){
-    console.log(siteResult)
+    let dom = document.getElementById('site_tab')
+    let name = dom.querySelector('.active').innerText
+    console.log('name: ', name,siteResult);
     let contentWrap= document.getElementById('site_content')
-    let contentHTML = siteResult['github']
+    let contentHTML = siteResult[name]
     contentWrap.innerHTML = contentHTML
 }
 
@@ -173,7 +196,7 @@ function __handleSiteContent(content, config){
     let list = ''
     for (let i = 0; i < content.length; i++) {
         const item = content[i];
-        list += `<div><a href="${item.link}" target="_blank"/>${item.title}</a>${item.content}</div>`
+        list += `<div class="block"><a href="${item.link}" class="title" target="_blank"/>${item.title}</a><div class="content">${item.content}</div></div>`
     }
 
     siteResult[config.name] = list
