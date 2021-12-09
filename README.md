@@ -90,7 +90,7 @@ Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL
 
 ## 使用方法
 
-具体使用方法请查看 [文档](document.md)
+具体使用方法请查看 [文档](Document.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
