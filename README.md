@@ -12,9 +12,6 @@
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>目录</summary>
   <ol>
@@ -40,13 +37,14 @@
   </ol>
 </details>
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## 关于本项目
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/charonX/search_reduce)
 Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL 的请求结果来实现多个搜索引擎以及网站的结果展示。项目主页模仿 Chrome 的新标签页，降低学习和使用成本。
+<br />
+[![Search Reduce Screen Shot][product-screenshot]1](https://github.com/charonX/search_reduce)
+<br />
+[![Search Reduce Screen Shot][product-screenshot]](https://[github.com/charonX/search_reduce)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -60,140 +58,77 @@ Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## 安装
 
+1. 克隆项目到本地
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   git clone https://github.com/charonX/search_reduce.git
    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+2. 打开 Chrome 扩展程序界面
 
+   ![screenshot0](/Users/zhanglei/code/search_block/static/install/screenshot0.jpg)
 
+3. 在页面右上角打开开发者模式
 
-<!-- USAGE EXAMPLES -->
-## Usage
+   ![screenshot1](/Users/zhanglei/code/search_block/static/install/screenshot1.jpg)
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+4. 点击加载已解压的扩展程序按钮，选择刚刚下载的代码目录
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+   ![screenshot2](/Users/zhanglei/code/search_block/static/install/screenshot2.jpg)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+5. 结果显示
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/charonX/search_reduce/issues) for a full list of proposed features (and known issues).
+   ![screenshot3](/Users/zhanglei/code/search_block/static/install/screenshot3.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- CONTRIBUTING -->
-## Contributing
+## 使用方法
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+具体使用方法请查看 [文档](document.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- LICENSE -->
-## License
+## 功能迭代
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+- [ ] 搜索结果排序
+- [ ] 新标签页背景自定义上传
+- [ ] 新标签页随机背景添加新数据源，丰富背景，提供刷新功能
+    - [ ] 刷新更换图片
+    - [ ] 图片数据源
+- [ ] 添加设置项
+    - [ ] 背景图方式选择
+    - [ ] 是否开启新标签页覆盖
+    - [ ] 搜索引擎配置
+- [ ] 添加change log
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+I2O - input2output@outlook.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+[项目链接](https://github.com/charonX/search_reduce)
+
+[个人博客](https://charonx.github.io/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## 鸣谢
+
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [normalize.css](http://necolas.github.io/normalize.css/)
+* [spectre.css](https://picturepan2.github.io/spectre/)
+* [animate.css](https://animate.style/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/charonX/search_reduce/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/charonX/search_reduce/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/charonX/search_reduce/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/charonX/search_reduce/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/charonX/search_reduce/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: static/screenshot.jpg
+[product-screenshot1]: static/screenshot1.jpg
