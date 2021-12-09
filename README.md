@@ -17,12 +17,13 @@
 
 Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL 的请求结果来实现多个搜索引擎以及网站的结果展示。项目主页模仿 Chrome 的新标签页，降低学习和使用成本。
 <br />
-新标签页：
+<br />
+新标签页:
 <br />
 [![Search Reduce Screen Shot][product-screenshot1]](https://github.com/charonX/search_reduce)
 <br />
-搜索聚合页
 <br />
+搜索聚合页:
 <br />
 [![Search Reduce Screen Shot][product-screenshot]](https://[github.com/charonX/search_reduce)
 

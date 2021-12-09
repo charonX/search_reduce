@@ -1,27 +1,3 @@
-<details>
-  <summary>目录</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">关于本项目</a>
-      <ul>
-        <li><a href="#built-with">使用到的开源代码</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">快速开始</a>
-      <ul>
-        <li><a href="#prerequisites">使用条件</a></li>
-        <li><a href="#installation">安装</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 ## 安装
 
 1. 克隆项目到本地
@@ -65,8 +41,28 @@
 #### 功能点
 
 1. 搜索框
-2. 快捷网址入口
+2. 快捷网址入口，可以添加最多10个快捷入口。鼠标悬浮后图标右上角会出现编辑和删除图标，可对快捷入口进行编辑和删除操作。快捷入口不满10个时会出现添加入口。
 
 ### 地址栏快捷操作
+在地址栏输入sr之后按【空格】或者【tab】键可以切换为本插件的聚合搜索，然后输入关键字回车后，可直接跳转到搜索结果页。
 
 ### 搜索结果页
+
+#### 展示
+
+![result](static/screenshot.jpg)
+
+#### 功能点
+
+搜索结果页主要分为五个部分：
+
+1. 搜索框
+2. 搜索结果
+   1. 搜索结果为多个搜索引擎的搜索结果聚合，去除广告等相关推广内容。搜索结果地址前的图标为此条内容是通过哪个搜索引擎搜到的。
+   2. 搜索结果由于百度的结果链接为加密链接，所以百度的搜索结果未进行整合，后续会考虑按内容的重合度来做整合。
+3. 相关搜索
+   1. 相关搜索为所有搜索引擎的相关搜索结果聚合。
+4. 网站搜索结果
+   1. 相关搜索下方为网站搜索结果聚合，主要包含了程序员的常用网站 Github repository, Github issues 以及 segmentfault，后续会添加一些其他的网站，并且可以进行添加删除配置。
+5. 各个网站请求状态
+   1. 结果页左下方图标为搜索请求状态，绿色点为成功，红色点为失败。
