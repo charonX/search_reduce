@@ -41,7 +41,7 @@
 
 Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL 的请求结果来实现多个搜索引擎以及网站的结果展示。项目主页模仿 Chrome 的新标签页，降低学习和使用成本。
 <br />
-[![Search Reduce Screen Shot][product-screenshot]1](https://github.com/charonX/search_reduce)
+[![Search Reduce Screen Shot][product-screenshot1]](https://github.com/charonX/search_reduce)
 <br />
 [![Search Reduce Screen Shot][product-screenshot]](https://[github.com/charonX/search_reduce)
 
@@ -68,19 +68,19 @@ Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL
 
 2. 打开 Chrome 扩展程序界面
 
-   ![screenshot0](/Users/zhanglei/code/search_block/static/install/screenshot0.jpg)
+   ![screenshot0](static/install/screenshot0.jpg)
 
 3. 在页面右上角打开开发者模式
 
-   ![screenshot1](/Users/zhanglei/code/search_block/static/install/screenshot1.jpg)
+   ![screenshot1](static/install/screenshot1.jpg)
 
 4. 点击加载已解压的扩展程序按钮，选择刚刚下载的代码目录
 
-   ![screenshot2](/Users/zhanglei/code/search_block/static/install/screenshot2.jpg)
+   ![screenshot2](static/install/screenshot2.jpg)
 
 5. 结果显示
 
-   ![screenshot3](/Users/zhanglei/code/search_block/static/install/screenshot3.jpg)
+   ![screenshot3](static/install/screenshot3.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
