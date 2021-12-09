@@ -12,39 +12,18 @@
   </p>
 </div>
 
-<details>
-  <summary>目录</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">关于本项目</a>
-      <ul>
-        <li><a href="#built-with">使用到的开源代码</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">快速开始</a>
-      <ul>
-        <li><a href="#prerequisites">使用条件</a></li>
-        <li><a href="#installation">安装</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 ## 关于本项目
 
 Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL 的请求结果来实现多个搜索引擎以及网站的结果展示。项目主页模仿 Chrome 的新标签页，降低学习和使用成本。
 <br />
 新标签页：
+<br />
 [![Search Reduce Screen Shot][product-screenshot1]](https://github.com/charonX/search_reduce)
 <br />
 搜索聚合页
+<br />
+<br />
 [![Search Reduce Screen Shot][product-screenshot]](https://[github.com/charonX/search_reduce)
 
 
