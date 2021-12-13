@@ -91,6 +91,7 @@ Search Reduce 是一款 Chrome 插件，不使用后端技术，通过分析 URL
        - [ ] 搜索引擎配置项
        - [ ] 背景图源配置项
 - [ ] 添加change log
+- [ ] 用web components改写代码逻辑
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

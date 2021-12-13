@@ -76,7 +76,6 @@ export default class Shortcut{
                     break
                 }
             }
-            console.log(type);
             switch(type){
                 case 'delete':
                     e.preventDefault();
