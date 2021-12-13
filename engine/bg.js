@@ -8,7 +8,7 @@ export default class Background{
         this.btnRefresh = document.getElementById('refreshBg')
         this.config = {}
         this.option = {
-            type:'bing'
+            type:'random'
         }
         this.Loading = false
         this.__init()

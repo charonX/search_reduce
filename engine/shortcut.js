@@ -64,13 +64,19 @@ export default class Shortcut{
     __addEvent(){
         this.dom.addEventListener('click',(e)=>{
             let type = ''
+            let target;
             for (let i = 0; i < e.path.length; i++) {
                 const dom = e.path[i];
-                if(dom.classList.contains('tile')){
+                if(dom.getAttribute('aria-label')){
+                    target = dom
                     type = dom.getAttribute('aria-label')
                     break
                 }
+                if(dom.classList.contains('tile')){
+                    break
+                }
             }
+            console.log(type);
             switch(type){
                 case 'delete':
                     e.preventDefault();
