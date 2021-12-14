@@ -16,7 +16,8 @@
     "webRequest",
     "storage",
     "topSites",
-    "tabs"
+    "tabs",
+    "unlimitedStorage"
   ],
   "host_permissions": [
     "http://*/*",
