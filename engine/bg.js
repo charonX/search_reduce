@@ -1,5 +1,6 @@
 import { Set, Get} from '../utils/storage.js'
 import { getImgDataURI } from '../utils/utils.js'
+// import Options from './options.js'
 
 export default class Background{
     constructor(){

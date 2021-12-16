@@ -49,7 +49,7 @@ export default class Icon{
                     url,
                 },
                 (res) => {
-                    if(res.success){
+                    if(res && res.success){
                         let parser = new DOMParser();
                         let dom = parser.parseFromString(res.data, "text/html");
                         let d = dom.querySelector('link[rel="shortcut icon"]')

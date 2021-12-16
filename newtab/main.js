@@ -1,12 +1,15 @@
 import Icon from '../engine/icon.js'
 import Shortcut from '../engine/shortcut.js'
 import Background from '../engine/bg.js'
+import Options from '../engine/options.js'
 
 // chrome.storage.local.clear()
 
 const icon = new Icon()
 const shortcut = new Shortcut(icon)
 const background = new Background()
+// const options = new Options()
+
 
 function init(){
     let searchBtn = document.getElementById('serach')
