@@ -142,26 +142,28 @@ const DEFAULT = {
 }
 export default class Options{
     constructor(){
-        if(!Options.instance) {
-            this.name = 'options'
-            this.__init()
-            Options.instance = this
-        }
-
-        return Options.instance
+        this.name = 'options'
+        this.instance = null;
+        this.__init()
     }
 
+    static getInstance(){
+        if (!this.instance) {
+            return this.instance = new Options()
+        }
+        return this.instance
+    }
     async __init(){
         let storage = await Get(this.name)
-        console.log('storage: ', storage);
 
         if(!!storage[this.name]){
             this.config = storage[this.name]
         }else{
-            Set(this.name, DEFAULT)
+            await Set(this.name, DEFAULT)
         }
 
-        console.log(111)
+        this.dispatch('inited')
+
     }
 
     getConfig(name){
@@ -169,5 +171,10 @@ export default class Options{
         if(this.config[name]){
             return this.config[name]
         }
+    }
+
+    dispatch(name){
+        const sendEvent = new Event(name)
+        document.dispatchEvent(sendEvent)
     }
 }

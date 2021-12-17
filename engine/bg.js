@@ -1,16 +1,15 @@
 import { Set, Get} from '../utils/storage.js'
 import { getImgDataURI } from '../utils/utils.js'
-// import Options from './options.js'
+import Options from './options.js'
 
 export default class Background{
     constructor(){
+        this.Options = Options.getInstance()
         this.name = 'background'
         this.dom = document.getElementById('bg')
         this.btnRefresh = document.getElementById('refreshBg')
         this.config = {}
-        this.option = {
-            type:'random'
-        }
+        this.option = this.Options.getConfig(this.name)
         this.Loading = false
         this.__init()
         this.__addEvent()
@@ -117,7 +116,7 @@ export default class Background{
         })
     }
     __getBingBG(){
-        let url = 'https://www.bing.com'
+        let url = 'https://cn.bing.com'
         return new Promise((resolve, reject) => {
             chrome.runtime.sendMessage(
                 {

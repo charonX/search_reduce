@@ -48,7 +48,7 @@ export const Config = {
         'name':'bing',
         'type': 'search',
         'searchType':'dom',
-        'baseUrl':'https://www.bing.com/search?',
+        'baseUrl':'https://cn.bing.com/search?',
         'keyword':'q',
         'laseSearch':'pq',
         'page':'first',

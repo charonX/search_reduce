@@ -5,10 +5,18 @@ import Options from '../engine/options.js'
 
 // chrome.storage.local.clear()
 
-const icon = new Icon()
-const shortcut = new Shortcut(icon)
-const background = new Background()
-// const options = new Options()
+
+
+function initOptions(){
+    const options = Options.getInstance()
+    document.addEventListener('inited',()=>{
+        console.log('inited')
+        const icon = new Icon()
+        new Shortcut(icon)
+        new Background()
+        init()
+    })
+}
 
 
 function init(){
@@ -40,4 +48,4 @@ function sendToSearch(value){
     })
 }
 
-init()
+initOptions()
