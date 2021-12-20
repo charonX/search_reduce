@@ -166,6 +166,8 @@
   <body>
     <div id="bg">
       <button class="btn btn-primary btn-action btn-lg c-hand" id="refreshBg"><i class="icon icon-refresh"></i></button>
+      <button class="btn btn-primary btn-action btn-lg c-hand"><i class="icon icon-more-horiz"></i></button>
+      
     </div>
     <div class="container">
       <div class="columns">
@@ -212,7 +214,7 @@
           <button class="btn btn-primary" aria-label="Submit">Submit</button><a class="btn btn-link" href="#modals-sizes" aria-label="Close">Close</a>
         </div>
       </div>
-    </div><div class="modal" id="options" data-index="">
+    </div><div class="modal active" id="options" data-index="">
       <a class="modal-overlay" href="#modals-sizes" aria-label="Close"></a>
       <div class="modal-container" role="document">
         <div class="modal-header"><a class="btn btn-clear float-right" href="#modals-sizes" aria-label="Close"></a>
@@ -229,11 +231,11 @@
                   <select class="form-select select-sm">
                     <option value="bing">Bing</option>
                     <option value="random">Random</option>
-                    <option>custom</option>
+                    <option value="custom">custom</option>
                   </select>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none" id="custom_bg_input">
                 <div class="col-3">
                   <label class="form-label label-sm"></label>
                 </div>

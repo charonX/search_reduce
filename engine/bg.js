@@ -116,7 +116,7 @@ export default class Background{
         })
     }
     __getBingBG(){
-        let url = 'https://cn.bing.com'
+        let url = 'https://www.bing.com'
         return new Promise((resolve, reject) => {
             chrome.runtime.sendMessage(
                 {
