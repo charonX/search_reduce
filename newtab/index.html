@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/spectre-icons.min.css">
     <link rel="stylesheet" href="../static/animate.min.css">
     <link rel="stylesheet" href="../static/style.css">
+    <script src="../components/modal.js" defer></script>
     <style>
       html,body,.container{
         width:100%;
@@ -214,42 +215,45 @@
           <button class="btn btn-primary" aria-label="Submit">Submit</button><a class="btn btn-link" href="#modals-sizes" aria-label="Close">Close</a>
         </div>
       </div>
-    </div><div class="modal active" id="options" data-index="">
+    </div>
+    <!-- <div class="modal active" id="options" data-index="">
       <a class="modal-overlay" href="#modals-sizes" aria-label="Close"></a>
       <div class="modal-container" role="document">
         <div class="modal-header"><a class="btn btn-clear float-right" href="#modals-sizes" aria-label="Close"></a>
           <div class="modal-title h5">选项设置</div>
         </div>
         <div class="modal-body">
-          <div class="content">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <div class="col-3 col-sm-12">
-                  <label class="form-label label-sm">壁纸来源</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                  <select class="form-select select-sm">
-                    <option value="bing">Bing</option>
-                    <option value="random">Random</option>
-                    <option value="custom">custom</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group" style="display:none" id="custom_bg_input">
-                <div class="col-3">
-                  <label class="form-label label-sm"></label>
-                </div>
-                <div class="col-9">
-                  <input class="form-input input-sm" type="file">
-                </div>
-            </form>
-          </div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" aria-label="Submit">Submit</button><a class="btn btn-link" href="#modals-sizes" aria-label="Close">Close</a>
         </div>
       </div>
-    </div>
+    </div> -->
+    <m-modal>
+      <div class="content" slot="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label label-sm">壁纸来源</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <select class="form-select select-sm">
+                <option value="bing">Bing</option>
+                <option value="random">Random</option>
+                <option value="custom">custom</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="display:none" id="custom_bg_input">
+            <div class="col-3">
+              <label class="form-label label-sm"></label>
+            </div>
+            <div class="col-9">
+              <input class="form-input input-sm" type="file">
+            </div>
+        </form>
+      </div>
+    </m-modal>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
