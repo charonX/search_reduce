@@ -21,6 +21,7 @@ class Modal extends HTMLElement {
         let wrap = document.createElement('div');
         wrap.innerHTML = templete
         let shadow = this.attachShadow({mode: 'open'});
+        shadow.adoptedStyleSheets = [styles];
         shadow.appendChild(wrap.firstChild.content);
     }
   }
