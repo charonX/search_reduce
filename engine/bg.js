@@ -129,8 +129,14 @@ export default class Background{
                         let dom = parser.parseFromString(res.data, "text/html");
                         let d = dom.querySelector('.img_cont')
                         let imgUrl =  d.style.backgroundImage
+
                         if(imgUrl){
-                            resolve(url + imgUrl.replace('url("','').replace('")', ''))
+                            let _url = imgUrl.replace('url("','').replace('")', '')
+                            console.log('_url: ', _url);
+                            if(_url.includes('http')){
+                                console.log(111)
+                            }
+                            resolve(_url)
                         }else{
                             reject('dom未找到')
                         }
