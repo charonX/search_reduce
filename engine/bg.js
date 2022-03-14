@@ -132,11 +132,10 @@ export default class Background{
 
                         if(imgUrl){
                             let _url = imgUrl.replace('url("','').replace('")', '')
-                            console.log('_url: ', _url);
-                            if(_url.includes('http')){
-                                console.log(111)
+                            if(_url.indexOf('http') == 0){
+                                resolve(_url)
                             }
-                            resolve(_url)
+                            resolve(url + _url)
                         }else{
                             reject('dom未找到')
                         }
